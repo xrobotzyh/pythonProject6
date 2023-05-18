@@ -7,6 +7,10 @@ header {
     padding: 10px;
 }
 
+h1,h3 {
+    font-family: 'Nunito', sans-serif;
+}
+
 .navigation ul {
     display: flex;
     list-style: none;
@@ -59,14 +63,14 @@ h1{
 
 .slider {
   display: flex;
-  transition: transform 0.5s;
+  transition: transform 1s;
 }
 
 .slider img {
-  height: 400px;
+  height: 588px;
   width: 400px;
   object-fit: cover;
-  padding:30px
+  padding:2px;
 }
 
 .arrow {
@@ -74,7 +78,7 @@ h1{
   top: 50%;
   transform: translateY(-50%);
   background: transparent;
-  border: none;
+  border: 5px;
   font-size: 2rem;
   cursor: pointer;
 }
