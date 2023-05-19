@@ -76,9 +76,9 @@ function createMovieElement(movie) {
 
     image.onload = function() {
         movieElement.innerHTML = `
-            <img src="${movie.image_url}" alt="${movie.title}">
+            <img src="${movie.image_url}" alt="${movie.title}" data-image-id="${movie.id}">
             <h3>${movie.title}</h3>
-            <button class="view-details-button" data-movie-id="${movie.id}">view details</button>
+
         `;
     };
 
@@ -92,12 +92,10 @@ function createMovieElement(movie) {
 
 function showMovieDetails(movieId) {
     let modal = document.getElementById("modal");
-    modal.style.display = "block";
-
     fetch(`http://localhost:8000/api/v1/titles/${movieId}`)
         .then(response => {
             if (!response.ok) {
-                throw new Error('Failed to fetch movie details');
+                throw new Error('Failed to load movie details');
             }
             return response.json();
         })
@@ -118,6 +116,7 @@ function showMovieDetails(movieId) {
         .catch(error => {
             console.log(error);
         });
+     modal.style.display = "block";
 }
 
 function closeMovieDetails() {
@@ -126,25 +125,23 @@ function closeMovieDetails() {
 }
 
 function initializePage() {
-    fetchMoviesData("http://localhost:8000/api/v1/titles/", "banner","",1);
+    fetchMoviesData("http://localhost:8000/api/v1/titles/", "banner-main","",1);
     fetchMoviesData("http://localhost:8000/api/v1/titles/", "top-rated-movies-list","",7);
     fetchMoviesData("http://localhost:8000/api/v1/titles/", "action","Action",7);
     fetchMoviesData("http://localhost:8000/api/v1/titles/", "animation","Animation",7);
     fetchMoviesData("http://localhost:8000/api/v1/titles/", "adventure","Adventure",7);
 
-
-    let viewDetailsButtons = document.querySelectorAll(".view-details-button");
-    viewDetailsButtons.forEach(button => {
-        button.addEventListener("click", function() {
-            let movieId = this.getAttribute("data-movie-id");
+    // get moiveid and call the showmoviedetails function
+    let imageElements = document.querySelectorAll("img");
+    imageElements.forEach(image => {
+        image.addEventListener("dblclick", function() {
+            let movieId = this.getAttribute("data-image-id");
             showMovieDetails(movieId);
         });
     });
 
-
     let closeButton = document.querySelector(".close-button");
     closeButton.addEventListener("click", closeMovieDetails);
 }
-
 
 document.addEventListener("DOMContentLoaded", initializePage);
