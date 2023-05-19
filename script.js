@@ -94,21 +94,25 @@ function showMovieDetails(movieId) {
     let modal = document.getElementById("modal");
     modal.style.display = "block";
 
-    // 使用 Fetch 获取电影详情数据
     fetch(`http://localhost:8000/api/v1/titles/${movieId}`)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch movie details');
+            }
+            return response.json();
+        })
         .then(data => {
-            let movieDetailsElement = document.querySelector(".movie-details");
+            let movieDetailsElement = modal.querySelector(".movie-details");
             movieDetailsElement.innerHTML = `
-                <h2>${data.title}</h2>
-                <p>year：${data.year}</p>
-                <p>imdb_score：${data.imdb_score}</p>
-                <p>directors：${data.directors.join(", ")}</p>
-                <p>actors：${data.actors.join(", ")}</p>
-                <p>duration：${data.duration}</p>
-                <p>country：${data.countries.join(", ")}</p>
-                <p>income：${data.worldwide_gross_income}</p>
-                <p>description：${data.description}</p>
+                <h3>${data.title}</h3>
+                <p>Year: ${data.year}</p>
+                <p>IMDB Score: ${data.imdb_score}</p>
+                <p>Directors: ${data.directors.join(", ")}</p>
+                <p>Actors: ${data.actors.join(", ")}</p>
+                <p>Duration: ${data.duration}</p>
+                <p>Country: ${data.countries.join(", ")}</p>
+                <p>Income: ${data.worldwide_gross_income}</p>
+                <p>Description: ${data.description}</p>
             `;
         })
         .catch(error => {
