@@ -7,6 +7,10 @@ header {
     padding: 10px;
 }
 
+body{
+    background-color: black;
+}
+
 h1,h3 {
     font-family: 'Nunito', sans-serif;
 }
@@ -14,12 +18,12 @@ h1,h3 {
 .navigation ul {
     display: flex;
     list-style: none;
+    margin-right: 500px;
 }
 
 .navigation ul li {
-    font-size: 1.5em;
-    margin-left: -60px;
-    margin-right: 300px;
+    font-size: 1.3em;
+    margin-right: 200px;
 
 }
 
@@ -28,16 +32,24 @@ h1,h3 {
     text-decoration: none;
 }
 
-.banner{
-    width: 100%;
-    height: 400px;
-    background-size: cover;
-    background-position: center;
-    border: 3px solid black;
-    box-sizing: border-box;
-    padding: 100px;
-    margin-top: 20px;
+.banner {
+    padding: 20px;
+    text-align: center;
 }
+
+.banner-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.see-details-button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
 
 .container {
     text-align: center;
@@ -54,7 +66,9 @@ h1,h3 {
 }
 
 h1{
-    text-align: center;
+    text-align: left;
+    color: white;
+    margin-left: 60px
 }
 
 .slider-container {
@@ -72,7 +86,12 @@ h1{
   height: 588px;
   width: 400px;
   object-fit: cover;
-  padding:2px;
+  padding:4px;
+  transition: transform 0.6s ease;
+}
+
+.slider img:hover {
+  transform: scale(1.02);
 }
 
 .arrow {
@@ -80,16 +99,91 @@ h1{
   top: 50%;
   transform: translateY(-50%);
   background: transparent;
-  border: 5px;
-  font-size: 2rem;
+  border: 10px;
+  font-size: 2.8rem;
   cursor: pointer;
 }
 
 .arrow-left {
   left: 10px;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .arrow-right {
   right: 10px;
+  color: rgba(255, 255, 255, 0.5);
 }
+
+#modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  background-color: rgba(255, 255, 255, 0.97);
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+}
+
+#modal-content{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+#banner-main {
+  height: 600px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 70% 50%;
+  border: 2px solid red;
+  box-sizing: border-box;
+  margin: 5px;
+}
+
+.banner-button {
+  position: relative;
+  top: 200px;
+  left: 150px;
+  width: 200px;
+  height: 50px;
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.8em;
+  transition: transform 0.3s
+}
+
+.banner-button:hover {
+  transform: scale(1.02);
+}
+
+h3 {
+  position: relative;
+  top: 170px;
+  left: 150px;
+  font-size: 1.6em;
+  color: #ffffff;
+}
+
+.banner-description {
+  position: relative;
+  width: 700px;
+  top: 180px;
+  left: 150px;
+  font-size: 1.4em;
+  color: white;
+}
+
+
 
