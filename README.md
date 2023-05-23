@@ -1,5 +1,8 @@
 # Movies ranking web JustStreamIt
-[![logo_of_just_stream_it]https://user.oc-static.com/upload/2020/09/18/16004298163529_P5.png "logo_of_just_stream_it")](https://user.oc-static.com/upload/2020/09/18/16004298163529_P5.png "logo_of_just_stream_it")
+<h3 align="center">
+    <img alt="Logo" title="#logo" width="354px" src="/src/16004298163529_P5.png">
+    <br>
+</h3>
 
 ## Introduction
 The objective of this project is to assist an association in creating a website of movie ratings. The association envisions a web platform that showcases movie ratings sourced from a their API. The website's design and layout will be modeled after the popular streaming service, netflix.
