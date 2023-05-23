@@ -15,6 +15,24 @@ h1,h3 {
     font-family: 'Nunito', sans-serif;
 }
 
+h1{
+    text-align: left;
+    color: white;
+    margin-left: 90px
+}
+
+h3 {
+  position: relative;
+  top: 170px;
+  left: 150px;
+  font-size: 1.6em;
+  color: #ffffff;
+}
+/*
+   navigation Styles
+   Styles for the navigation.
+*/
+
 .navigation ul {
     display: flex;
     list-style: none;
@@ -32,114 +50,10 @@ h1,h3 {
     text-decoration: none;
 }
 
-.banner {
-    padding: 20px;
-    text-align: center;
-}
-
-.banner-content {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.see-details-button {
-    padding: 10px 20px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-
-.container {
-    text-align: center;
-    font-size: 1.5em;
-}
-
-.box {
-    display: grid;
-    border: 1px solid black;
-    width: 350px;
-    height: 350px;
-    margin: 10px;
-    display: inline-block;
-}
-
-h1{
-    text-align: left;
-    color: white;
-    margin-left: 60px
-}
-
-.slider-container {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-}
-
-.slider {
-  display: flex;
-  transition: transform 1s;
-}
-
-.slider img {
-  height: 588px;
-  width: 400px;
-  object-fit: cover;
-  padding:4px;
-  transition: transform 0.6s ease;
-}
-
-.slider img:hover {
-  transform: scale(1.02);
-}
-
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  border: 10px;
-  font-size: 2.8rem;
-  cursor: pointer;
-}
-
-.arrow-left {
-  left: 10px;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.arrow-right {
-  right: 10px;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-#modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  background-color: rgba(255, 255, 255, 0.97);
-  border-radius: 4px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  padding: 20px;
-}
-
-#modal-content{
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 1.5em;
-  cursor: pointer;
-}
-
+/*
+   banner Styles
+   Styles for the banner,animation of zoom up when cursor move on it.
+*/
 #banner-main {
   height: 600px;
   background-size: contain;
@@ -168,14 +82,6 @@ h1{
   transform: scale(1.02);
 }
 
-h3 {
-  position: relative;
-  top: 170px;
-  left: 150px;
-  font-size: 1.6em;
-  color: #ffffff;
-}
-
 .banner-description {
   position: relative;
   width: 700px;
@@ -183,6 +89,85 @@ h3 {
   left: 150px;
   font-size: 1.4em;
   color: white;
+}
+
+/*
+   section Styles
+   Styles for the section of slider for 3 categories,animation of zoom up when cursor move on it.
+*/
+.slider-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.slider {
+  display: flex;
+  transition: transform 1s;
+}
+
+.slider img {
+  height: 588px;
+  width: 400px;
+  object-fit: cover;
+  padding: 4px;
+  margin: 2px;
+  transition: transform 0.6s ease;
+}
+
+.slider img:hover {
+  transform: scale(1.02);
+}
+
+/*
+   icon arrow Styles
+*/
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 10px;
+  font-size: 2.8rem;
+  cursor: pointer;
+}
+
+.arrow-left {
+  left: 10px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.arrow-right {
+  right: 10px;
+  color: rgba(255, 255, 255, 0.5);
+}
+/*
+   modal Styles
+*/
+#modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  background-color: rgba(255, 255, 255, 0.97);
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+}
+
+#modal-content{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5em;
+  cursor: pointer;
 }
 
 

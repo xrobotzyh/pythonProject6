@@ -1,15 +1,15 @@
 // get all the blocks of images
 const blocks = document.querySelectorAll(".slider-container");
 
-// for every block
+// for every block get the width of the image and index of
 blocks.forEach(block => {
   const slider = block.querySelector(".slider"); // get slide element
   const images = slider.querySelectorAll("img"); //get images elements
   const arrowLeft = block.querySelector(".arrow-left"); // get arrow left icon
   const arrowRight = block.querySelector(".arrow-right"); // get arrow right icon
-  const sliderWidth = slider.offsetWidth;
+  const sliderWidth = slider.offsetWidth; //get slider images width
   const imageWidth = images[0].offsetWidth; // get single image width
-  const maxIndex = images.length - 1;
+  const maxIndex = 6 // max number of index for 7 images
 
   let currentIndex = 0;
 
@@ -27,14 +27,14 @@ blocks.forEach(block => {
     }
   }
 
-  // listen click arrow left and do slide action
+  // listen click arrow left action and do slide left function
   arrowLeft.addEventListener("click",slideLeft);
 
-  // listen click arrow right and do slide action
   arrowRight.addEventListener("click",slideRight);
 
 });
 
+// async function to fetch movies data by using the api address
 async function fetchMoviesData(baseUrl, containerId, genre, moviesCount) {
   let container = document.getElementById(containerId);
   let slider = container.querySelector(".slider");
@@ -42,7 +42,8 @@ async function fetchMoviesData(baseUrl, containerId, genre, moviesCount) {
   let page = 1;
   let moviesPerPage = 5;
 
-  while (page < 3) {
+  while (moviesLoaded < moviesCount) {
+    // get url address of giving categories
     let url = baseUrl + "?genre=" + genre + "&limit=" + moviesPerPage + "&page=" + page + "&sort_by=-imdb_score";
 
     try {
@@ -51,9 +52,10 @@ async function fetchMoviesData(baseUrl, containerId, genre, moviesCount) {
       if (!response.ok) {
         throw new Error("movies not found");
       }
-
+      // wait the promise to be fulfilled
       const data = await response.json();
-
+      // because one page has only 5 results,but we need 7 results in total for every category and also we ignore
+      // the result which image can not be loaded
       let moviesToAdd = Math.min(moviesCount - moviesLoaded, data.results.length);
 
       for (let i = 0; i < moviesToAdd; i++) {
@@ -73,14 +75,14 @@ async function fetchMoviesData(baseUrl, containerId, genre, moviesCount) {
 function createMovieElement(movie) {
     let movieElement = document.createElement("div");
     movieElement.classList.add("movie");
-
+    // create new image object
     let image = new Image();
     image.src = movie.image_url;
-
+    // if image can be load successful
     image.onload = function() {
+        //Set the image source, alt text, and data attributes dynamically
         movieElement.innerHTML = `
             <img src="${movie.image_url}" alt="${movie.title}" data-image-id="${movie.id}">
-            <h3>${movie.title}</h3>
         `;
     };
 
@@ -105,7 +107,7 @@ async function fetchBannerData(url) {
     }
 }
 
-
+// async function to set banner image,button and title
 async function setBannerBackground() {
     const bannerElement = document.getElementById("banner-main");
     const data = await fetchBannerData("http://localhost:8000/api/v1/titles/?genre=&limit=5&page=1&sort_by=-imdb_score");
@@ -131,7 +133,7 @@ async function showMovieDetails(movieId) {
     }
 
     const data = await response.json();
-
+    //Set the divers attributes of modal by using the movie data
     let movieDetailsElement = modal.querySelector(".movie-details");
     movieDetailsElement.innerHTML = `
       <img src=${data.image_url} alt=${data.title}>
@@ -150,11 +152,11 @@ async function showMovieDetails(movieId) {
   } catch (error) {
     console.log(error);
   }
-
+  // set modal display as block,none by default
   modal.style.display = "block";
 }
 
-
+// close the modal by set display attribute as none
 function closeMovieDetails() {
     let modal = document.getElementById("modal");
     modal.style.display = "none";
@@ -167,7 +169,7 @@ async function initializePage() {
     await fetchMoviesData("http://localhost:8000/api/v1/titles/", "animation","Animation",7);
     await fetchMoviesData("http://localhost:8000/api/v1/titles/", "adventure","Adventure",7);
 
-    // get moiveid and call the showmoviedetails function
+    // listen the click image action and get movie id to call show movie details function
     let imageElements = document.querySelectorAll("img");
     imageElements.forEach(image => {
         image.addEventListener("click", function() {
@@ -185,5 +187,5 @@ async function initializePage() {
     let closeButton = document.querySelector(".close-button");
     closeButton.addEventListener("click", closeMovieDetails);
 }
-
+//listen when the DOM content is fully loaded to execute the initializePage function
 document.addEventListener("DOMContentLoaded", initializePage);
